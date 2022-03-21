@@ -1,0 +1,135 @@
+state,puma12,county,stab,cntyname,PUMAname,pop16,afact
+State code,PUMA (2012),County code,State abbreviation,County name,PUMA12 name,Population (2016 est.),puma12 to county allocation factor
+37,00100,37009,NC,Ashe NC,"Boone High Country--Watauga, Ashe, Yancey, Avery & Mitchell Counties",26924,0.2053
+37,00100,37011,NC,Avery NC,"Boone High Country--Watauga, Ashe, Yancey, Avery & Mitchell Counties",17516,0.1335
+37,00100,37121,NC,Mitchell NC,"Boone High Country--Watauga, Ashe, Yancey, Avery & Mitchell Counties",15126,0.1153
+37,00100,37189,NC,Watauga NC,"Boone High Country--Watauga, Ashe, Yancey, Avery & Mitchell Counties",53922,0.4111
+37,00100,37199,NC,Yancey NC,"Boone High Country--Watauga, Ashe, Yancey, Avery & Mitchell Counties",17678,0.1348
+37,00200,37005,NC,Alleghany NC,"Wilkesboro High Country--Surry, Wilkes & Alleghany Counties",10848,0.0715
+37,00200,37171,NC,Surry NC,"Wilkesboro High Country--Surry, Wilkes & Alleghany Counties",72113,0.4754
+37,00200,37193,NC,Wilkes NC,"Wilkesboro High Country--Surry, Wilkes & Alleghany Counties",68740,0.4531
+37,00300,37157,NC,Rockingham NC,Rockingham & Stokes Counties,91393,0.6647
+37,00300,37169,NC,Stokes NC,Rockingham & Stokes Counties,46097,0.3353
+37,00400,37033,NC,Caswell NC,"Granville, Person & Caswell Counties",22910,0.189
+37,00400,37077,NC,Granville NC,"Granville, Person & Caswell Counties",59031,0.487
+37,00400,37145,NC,Person NC,"Granville, Person & Caswell Counties",39284,0.3241
+37,00500,37069,NC,Franklin NC,"Franklin, Vance & Warren (West) Counties",64705,0.526
+37,00500,37181,NC,Vance NC,"Franklin, Vance & Warren (West) Counties",44244,0.3597
+37,00500,37185,NC,Warren NC,"Franklin, Vance & Warren (West) Counties",14060.7663,0.1143
+37,00600,37083,NC,Halifax NC,"Halifax, Hertford, Northampton & Warren (East) Counties",51766,0.5088
+37,00600,37091,NC,Hertford NC,"Halifax, Hertford, Northampton & Warren (East) Counties",24136,0.2372
+37,00600,37131,NC,Northampton NC,"Halifax, Hertford, Northampton & Warren (East) Counties",20000,0.1966
+37,00600,37185,NC,Warren NC,"Halifax, Hertford, Northampton & Warren (East) Counties",5846.2337,0.0575
+37,00700,37029,NC,Camden NC,Northeast Albemarle Sound Region,10418,0.0904
+37,00700,37041,NC,Chowan NC,Northeast Albemarle Sound Region,14383,0.1248
+37,00700,37053,NC,Currituck NC,Northeast Albemarle Sound Region,25809,0.2239
+37,00700,37073,NC,Gates NC,Northeast Albemarle Sound Region,11478,0.0996
+37,00700,37139,NC,Pasquotank NC,Northeast Albemarle Sound Region,39864,0.3458
+37,00700,37143,NC,Perquimans NC,Northeast Albemarle Sound Region,13335,0.1157
+37,00800,37015,NC,Bertie NC,South & West Albemarle Sound & Northern Outer Banks Regions,19854,0.1969
+37,00800,37055,NC,Dare NC,South & West Albemarle Sound & Northern Outer Banks Regions,35964,0.3566
+37,00800,37095,NC,Hyde NC,South & West Albemarle Sound & Northern Outer Banks Regions,5517,0.0547
+37,00800,37117,NC,Martin NC,South & West Albemarle Sound & Northern Outer Banks Regions,23172,0.2298
+37,00800,37177,NC,Tyrrell NC,South & West Albemarle Sound & Northern Outer Banks Regions,4141,0.0411
+37,00800,37187,NC,Washington NC,South & West Albemarle Sound & Northern Outer Banks Regions,12195,0.1209
+37,00900,37065,NC,Edgecombe NC,Nash & Edgecombe Counties--Rocky Mount City,53318,0.3619
+37,00900,37127,NC,Nash NC,Nash & Edgecombe Counties--Rocky Mount City,94005,0.6381
+37,01000,37079,NC,Greene NC,Wilson & Greene Counties--Wilson City,21168,0.2059
+37,01000,37195,NC,Wilson NC,Wilson & Greene Counties--Wilson City,81661,0.7941
+37,01100,37101,NC,Johnston NC,Johnston County,191450,1
+37,01201,37183,NC,Wake NC,Raleigh City (South & Central),153994.4926,1
+37,01202,37183,NC,Wake NC,Raleigh City (North),146456.6094,1
+37,01203,37183,NC,Wake NC,"Wake County (Northeast)--Raleigh City (Northeast), Wake Forest & Rolesville Towns",117595.8577,1
+37,01204,37183,NC,Wake NC,"Wake County (East)--Raleigh City (East), Knightdale & Garner (North) Towns",126968.2535,1
+37,01205,37183,NC,Wake NC,Wake County (Southeast)--Garner (South) & Fuquay-Varina Towns,119827.7125,1
+37,01206,37183,NC,Wake NC,Wake County (Northwest)--Raleigh City (Northwest) & Morrisville Town,119541.905,1
+37,01207,37183,NC,Wake NC,Wake County (West Central)--Cary Town,145544.5813,1
+37,01208,37183,NC,Wake NC,Wake County (Southwest)--Apex & Holly Springs Towns,116861.588,1
+37,01301,37063,NC,Durham NC,Durham County (South)--Durham City (South),161501.4913,1
+37,01302,37063,NC,Durham NC,Durham County (North)--Durham City (North),144710.5087,1
+37,01400,37135,NC,Orange NC,Orange County--Chapel Hill Town,141796,1
+37,01500,37037,NC,Chatham NC,Chatham & Lee Counties,72243,0.5479
+37,01500,37105,NC,Lee NC,Chatham & Lee Counties,59616,0.4521
+37,01600,37001,NC,Alamance NC,Alamance County--Burlington City,159688,1
+37,01701,37081,NC,Guilford NC,Greensboro City (North),139949.3406,1
+37,01702,37081,NC,Guilford NC,Greensboro City (South),117048.0348,1
+37,01703,37081,NC,Guilford NC,Guilford County (North)--Summerfield Town,122315.7087,1
+37,01704,37081,NC,Guilford NC,Guilford County (South)--High Point City,142016.9159,1
+37,01801,37067,NC,Forsyth NC,Winston-Salem City (North),111388.6747,1
+37,01802,37067,NC,Forsyth NC,Winston-Salem City (South),126356.3292,1
+37,01803,37067,NC,Forsyth NC,Forsyth County (Outside Winston-Salem City)--Kernersville Town & Clemmons Village,133765.9962,1
+37,01900,37059,NC,Davie NC,"Davie, Yadkin & Iredell (North) Counties",42013,0.3939
+37,01900,37097,NC,Iredell NC,"Davie, Yadkin & Iredell (North) Counties",27110.2771,0.2542
+37,01900,37197,NC,Yadkin NC,"Davie, Yadkin & Iredell (North) Counties",37532,0.3519
+37,02000,37003,NC,Alexander NC,Caldwell & Alexander Counties,37428,0.3148
+37,02000,37027,NC,Caldwell NC,Caldwell & Alexander Counties,81449,0.6852
+37,02100,37023,NC,Burke NC,Burke & McDowell Counties,88851,0.6634
+37,02100,37111,NC,McDowell NC,Burke & McDowell Counties,45075,0.3366
+37,02201,37021,NC,Buncombe NC,Buncombe County (Southeast)--Asheville City,129199.1566,1
+37,02202,37021,NC,Buncombe NC,Buncombe County (Northwest),126888.8434,1
+37,02300,37075,NC,Graham NC,"Haywood, Madison, Swain, Graham & Jackson (North) Counties",8558,0.077
+37,02300,37087,NC,Haywood NC,"Haywood, Madison, Swain, Graham & Jackson (North) Counties",60682,0.5461
+37,02300,37099,NC,Jackson NC,"Haywood, Madison, Swain, Graham & Jackson (North) Counties",6199.1088,0.0558
+37,02300,37115,NC,Madison NC,"Haywood, Madison, Swain, Graham & Jackson (North) Counties",21340,0.192
+37,02300,37173,NC,Swain NC,"Haywood, Madison, Swain, Graham & Jackson (North) Counties",14346,0.1291
+37,02400,37039,NC,Cherokee NC,"Jackson (South), Macon, Cherokee & Clay Counties",27905,0.2555
+37,02400,37043,NC,Clay NC,"Jackson (South), Macon, Cherokee & Clay Counties",10915,0.0999
+37,02400,37099,NC,Jackson NC,"Jackson (South), Macon, Cherokee & Clay Counties",36041.8912,0.3299
+37,02400,37113,NC,Macon NC,"Jackson (South), Macon, Cherokee & Clay Counties",34376,0.3147
+37,02500,37089,NC,Henderson NC,Henderson & Transylvania Counties,114209,0.7733
+37,02500,37175,NC,Transylvania NC,Henderson & Transylvania Counties,33482,0.2267
+37,02600,37045,NC,Cleveland NC,"Rutherford, Cleveland (West) & Polk Counties--Shelby City",49508.0007,0.3633
+37,02600,37149,NC,Polk NC,"Rutherford, Cleveland (West) & Polk Counties--Shelby City",20334,0.1492
+37,02600,37161,NC,Rutherford NC,"Rutherford, Cleveland (West) & Polk Counties--Shelby City",66421,0.4874
+37,02700,37045,NC,Cleveland NC,Lincoln & Cleveland (East) Counties,47635.9993,0.3698
+37,02700,37109,NC,Lincoln NC,Lincoln & Cleveland (East) Counties,81168,0.6302
+37,02800,37035,NC,Catawba NC,Catawba County--Hickory City,156459,1
+37,02900,37097,NC,Iredell NC,Iredell (South)--Mooresville Town & Statesville City,145805.7229,1
+37,03001,37071,NC,Gaston NC,Gaston County (Northwest)--Mount Holly City,107262.318,1
+37,03002,37071,NC,Gaston NC,Gaston County (Southeast)--Gastonia & Belmont Cities,109702.682,1
+37,03101,37119,NC,Mecklenburg NC,Charlotte City (Central),117776.3811,1
+37,03102,37119,NC,Mecklenburg NC,Charlotte City (Northwest),131070.3844,1
+37,03103,37119,NC,Mecklenburg NC,Charlotte City (Northeast),125814.7223,1
+37,03104,37119,NC,Mecklenburg NC,Charlotte City (South),163102.1649,1
+37,03105,37119,NC,Mecklenburg NC,Charlotte City (Southwest),115279.3108,1
+37,03106,37119,NC,Mecklenburg NC,"Mecklenburg County (North)--Huntersville, Cornelius & Davidson Towns",157517.307,1
+37,03107,37119,NC,Mecklenburg NC,Mecklenburg County (East)--Mint Hill & Matthews (North) Towns,124502.5274,1
+37,03108,37119,NC,Mecklenburg NC,Mecklenburg County (South)--Matthews Town (South),119772.2021,1
+37,03200,37025,NC,Cabarrus NC,"Cabarrus County (West)--Concord, Kannapolis Cities & Harrisburg Town",150912.4997,1
+37,03300,37025,NC,Cabarrus NC,Stanley & Cabarrus (East) Counties,50677.5003,0.4546
+37,03300,37167,NC,Stanly NC,Stanley & Cabarrus (East) Counties,60791,0.5454
+37,03400,37159,NC,Rowan NC,Rowan County,139933,1
+37,03500,37057,NC,Davidson NC,Davidson County,164926,1
+37,03600,37151,NC,Randolph NC,Randolph County,143416,1
+37,03700,37123,NC,Montgomery NC,Moore & Montgomery Counties,27418,0.2226
+37,03700,37125,NC,Moore NC,Moore & Montgomery Counties,95776,0.7774
+37,03800,37085,NC,Harnett NC,Harnett County,130881,1
+37,03900,37061,NC,Duplin NC,Sampson & Duplin Counties,58969,0.483
+37,03900,37163,NC,Sampson NC,Sampson & Duplin Counties,63124,0.517
+37,04000,37191,NC,Wayne NC,Wayne County,124150,1
+37,04100,37103,NC,Jones NC,"Lenoir, Onslow (North) & Jones Counties",9845,0.0901
+37,04100,37107,NC,Lenoir NC,"Lenoir, Onslow (North) & Jones Counties",57307,0.5246
+37,04100,37133,NC,Onslow NC,"Lenoir, Onslow (North) & Jones Counties",42079.5989,0.3852
+37,04200,37147,NC,Pitt NC,Pitt County--Greenville City,177220,1
+37,04300,37049,NC,Craven NC,Craven County,103445,1
+37,04400,37013,NC,Beaufort NC,"Carteret, Beaufort & Pamlico Counties",47526,0.3677
+37,04400,37031,NC,Carteret NC,"Carteret, Beaufort & Pamlico Counties",68890,0.5331
+37,04400,37137,NC,Pamlico NC,"Carteret, Beaufort & Pamlico Counties",12821,0.0992
+37,04500,37133,NC,Onslow NC,Onslow County (South)--Jacksonville City,145056.4011,1
+37,04600,37129,NC,New Hanover NC,Pender & New Hanover (North) Counties,56207.3523,0.4875
+37,04600,37141,NC,Pender NC,Pender & New Hanover (North) Counties,59090,0.5125
+37,04700,37129,NC,New Hanover NC,New Hanover County (South)--Wilmington City,167275.6477,1
+37,04800,37019,NC,Brunswick NC,Brunswick County,126953,1
+37,04900,37017,NC,Bladen NC,"Columbus, Bladen & Robeson (East) Counties",33741,0.3255
+37,04900,37047,NC,Columbus NC,"Columbus, Bladen & Robeson (East) Counties",56505,0.5451
+37,04900,37155,NC,Robeson NC,"Columbus, Bladen & Robeson (East) Counties",13414.0658,0.1294
+37,05001,37051,NC,Cumberland NC,Cumberland County (Central)--Fayetteville City (Central & East),111380.3373,1
+37,05002,37051,NC,Cumberland NC,Cumberland County (East)--Hope Mills & Spring Lake Towns,107411.9775,1
+37,05003,37051,NC,Cumberland NC,Cumberland County (West)--Fayetteville City (West),108334.6852,1
+37,05100,37155,NC,Robeson NC,Robeson County (West)--Lumberton City,119820.9342,1
+37,05200,37093,NC,Hoke NC,"Hoke, Richmond & Scotland Counties",53262,0.3991
+37,05200,37153,NC,Richmond NC,"Hoke, Richmond & Scotland Counties",44939,0.3368
+37,05200,37165,NC,Scotland NC,"Hoke, Richmond & Scotland Counties",35244,0.2641
+37,05300,37007,NC,Anson NC,Union (East) & Anson Counties--Monroe City,25448,0.2009
+37,05300,37179,NC,Union NC,Union (East) & Anson Counties--Monroe City,101202.2315,0.7991
+37,05400,37179,NC,Union NC,Union County (West)--Indian Trail & Stallings Towns,125403.7685,1

@@ -1,0 +1,418 @@
+---
+title: "Theming with bslib and thematic"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    toc_depth: 3
+    #code_folding: show
+    #theme:
+    #  bg: "#202123"
+    #  fg: "#B8BCC2"
+    #  primary: "#EA80FC"
+    #  secondary: "#00DAC6"
+    #  base_font:
+    #    google: Prompt
+    #  heading_font:
+    #    google: Proza Libre
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F,message = F, warning = FALSE)
+
+
+library(here)
+library(sf)
+library(tidyverse)
+library(downloadthis)
+library(DT)
+library(tidycensus)
+library(janitor)
+library(plotly)
+library(kableExtra)
+library(reactable)
+library(htmltools)
+library(htmlwidgets)
+library(crosstalk)
+library(leaflet)
+library(shiny)
+library(shinyWidgets)
+
+
+## Read in scripts processing and cleaning supplemental data
+
+source("market_area.R")
+source("esri_analysis.R")
+source("projections.R")
+source("costar.R")
+
+# Set project parameters
+
+project_name <- "City of Wilson"
+market_area_name <- "Wilson Market Area"
+
+# Read in Shapefile of project area - ***SET NAME***
+## Because office market areas are set at the county level, the {tigris} package is ## easiest. 
+
+
+```
+
+### Residential Market Area
+
+The residential market area includes 37 Census Tracts that cover the entirety of Wilson County, and edges of Johnston, Franklin, Nash, and Edgecombe Counties. The tracts were selected to draw from the more rural areas of Johnston and Franklin County without overlapping with high-growth communities like Wake Forest or Clayton. Rocky Mount was included due to the significant number of commuters from Rocky Mount to Wilson.
+
+```{r}
+
+market_area_sf %>%
+  leaflet() %>%
+  addTiles() %>%
+  addPolygons()
+
+
+```
+
+
+### Future Growth (2021-2026)
+
+```{r}
+
+summary_table %>%
+  reactable(columns = list(
+    Change = colDef(format = colFormat(separators = T)),
+    `2021` = colDef(align = "right"),
+    `2026` = colDef(align = "right")
+  ))
+
+
+
+## This code chunk creates a function used to generate bars showing how much each income bracket will grow or shrink over the next 5 years
+bar_chart_pos_neg <- function(label, value, max_value = 1, height = "16px",
+                              pos_fill = "#44546a", neg_fill = "#fca129") {
+  neg_chart <- div(style = list(flex = "1 1 0"))
+  pos_chart <- div(style = list(flex = "1 1 0"))
+  width <- paste0(abs(value / 2000) * 100, "%")
+
+  if (value < 0) {
+    bar <- div(style = list(marginLeft = "8px", background = neg_fill, width = width, height = height))
+    chart <- div(style = list(display = "flex", alignItems = "center", justifyContent = "flex-end"), label, bar)
+    neg_chart <- tagAppendChild(neg_chart, chart)
+  } else {
+    bar <- div(style = list(marginRight = "8px", background = pos_fill, width = width, height = height))
+    chart <- div(style = list(display = "flex", alignItems = "center"), bar, label)
+    pos_chart <- tagAppendChild(pos_chart, chart)
+  }
+
+  div(style = list(display = "flex"), neg_chart, pos_chart)
+}
+
+
+income_projections %>%
+  reactable(defaultColDef = colDef(format = colFormat(separators = T)),
+  columns = list(
+    Renters = colDef(
+      format = colFormat(separators = T),
+     cell = function(value) {
+        label <- value
+        bar_chart_pos_neg(label, value)
+      },
+      align = "center"
+    ),
+    Owners = colDef(
+      format = colFormat(separators = T),
+     cell = function(value) {
+        label <- value
+        bar_chart_pos_neg(label, value)
+      },
+     align = "center"
+    )
+))
+
+
+```
+
+### Multifamily Supply
+
+
+
+```{r multifamily supply}
+
+current_conditions %>%
+  mutate(value = case_when(
+    name == "Units" ~ value,
+    name == "CoStar Vacancy rate (%)" ~ paste0(value,"%"),
+    name == "Effective Rent per unit" ~ paste0("$",value)
+  )) %>% 
+  reactable(
+    columns = list(
+      value = colDef(name = "Value", html = TRUE, align = "right"),
+      name = colDef(name = "Measurement for Class A&B Props", html = TRUE, align = "left",
+                    width = 300)
+    ),
+    width =450,
+    bordered = TRUE,
+  )
+
+
+inventory_plot <- plot_ly(costar_merge_trend,
+       x = ~all_props_period, 
+       y = ~all_props_inventory_units, 
+       name = "All Properties",
+       type = 'scatter',
+       mode = "lines+markers") %>%
+  add_trace(y = ~ab_props_inventory_units, 
+            name = "Class A&B Properties",
+            type = 'scatter',
+            mode = "lines+markers") %>%
+  add_trace(y = ~c_props_inventory_units, 
+            name = "Class C Properties",
+            type = 'scatter',
+            mode = "lines+markers") %>%
+  layout(xaxis = list(title = "Year"),
+         #yaxis = list(title = "Inventory",range = c(0,1600000)),
+         title = "Change in Units by Building Class Type") %>%
+  config(scrollZoom = FALSE, displayLogo = FALSE)
+
+inventory_plot
+
+
+
+  
+
+
+```
+
+```{r}
+
+rent_plot <- plot_ly(costar_merge_trend,
+       x = ~all_props_period, 
+       y = ~all_props_effective_rent_per_unit, 
+       name = "All Properties",
+       type = 'scatter',
+       mode = "lines+markers") %>%
+  add_trace(y = ~ab_props_effective_rent_per_unit, 
+            name = "Class A&B Properties",
+            type = 'scatter',
+            mode = "lines+markers") %>%
+  add_trace(y = ~c_props_effective_rent_per_unit, 
+            name = "Class C Properties",
+            type = 'scatter',
+            mode = "lines+markers") %>%
+  layout(yaxis = list(title = "Rent per unit"), 
+         xaxis = list(title = "Year"),
+         title = "Change in Rent by Building Class Type") %>%
+  config(scrollZoom = FALSE, displayLogo = FALSE)
+
+
+rent_plot
+
+
+list("costar_ab_trend" = costar_ab_trend,"costar_allprop_trend" = costar_all_trend,
+     "costar_c_trend" = costar_c_trend) %>%
+    download_this(
+    output_name = "CoStar trend data",
+    output_extension = ".xlsx",
+    button_label = "Download CoStar trend data as xlsx",
+    button_type = "warning",
+    has_icon = TRUE,
+    icon = "fa fa-save"
+  )
+
+highlight_column <- list(backgroundColor = "#f7f7f7")
+
+costar_all_props_sf <- costar_all_props_clean %>% 
+  st_as_sf(coords = c("Longitude","Latitude"))
+
+# A SpatialPointsDataFrame for the map.
+# Set a group name to share data points with the table.
+
+
+costar_all_props_sf_shared <- SharedData$new(costar_all_props_sf, group = "Property Address")
+
+# A regular data frame (without coordinates) for the table.
+# Use the same group name as the map data.
+costar_data <- costar_all_props_sf %>%
+  st_drop_geometry() %>%
+  #select(brewery, address, village, founded) %>%
+  SharedData$new(group = "Property Address")
+
+slider <- filter_slider("Number Of Units","Number Of Units",costar_all_props_sf_shared,~`Number Of Units`)
+
+checkbox <- filter_checkbox("Building Class", "Class", costar_all_props_sf_shared, ~`Building Class`, inline = TRUE)
+
+map <- leaflet(costar_all_props_sf_shared) %>%
+  addTiles() %>%
+  addMarkers()
+
+tbl <- reactable(
+  costar_data,
+  selection = "multiple",
+  onClick = "select",
+  rowStyle = list(cursor = "pointer"),
+  minRows = 10,
+  defaultSorted = "Number Of Units",
+  filterable = TRUE,
+  search = TRUE,
+  defaultColDef = colDef(
+    header = function(value) gsub(".", " ", value, fixed = TRUE),
+    cell = function(value) format(value, nsmall = 1),
+    align = "center",
+    format = colFormat(separators = T),
+    minWidth = 200,
+    headerStyle = list(background = "#f7f7f8")
+  ),
+  columns = list(
+    `Property Address` = colDef(
+      style = highlight_column,
+      headerStyle = highlight_column
+    ),
+    `Property Name` = colDef(
+      style = highlight_column,
+      headerStyle = highlight_column
+    ),
+    City = colDef(
+      style = highlight_column,
+      headerStyle = highlight_column
+    )
+  ),
+  resizable = TRUE,
+  wrap = FALSE,
+  bordered = TRUE
+)
+
+#htmltools::browsable(
+#  htmltools::tagList(map, slider,tbl)
+#)
+
+bscols(
+  widths = c(3, 9),
+  list(slider,checkbox),
+list(map,tbl)  
+)
+
+costar_all_props_clean %>%
+    download_this(
+    output_name = "costar_all_props_clean",
+    output_extension = ".xlsx",
+    button_label = "Download CoStar property data as xlsx",
+    button_type = "warning",
+    has_icon = TRUE,
+    icon = "fa fa-save"
+  )
+
+
+```
+
+### Future Demand
+
+```{r}
+
+
+numericInputIcon("selected_rent_growth","Selected Rent Growth:",value = (average_annual_rent_growth*100),min = 0,max = 100, icon = list(NULL,icon("percent")))
+
+sliderInput(inputId = "cost_burden",
+                   label = "Max rent as share of income",
+                   min = 0, max = 100, step = 1,
+            value = 30)
+
+
+reactableOutput("value")
+              
+
+renderReactable({ 
+
+predicted_rent_growth <- input$selected_rent_growth
+
+predicted_rent <- effective_rent_psf*average_unit_size*((1+(predicted_rent_growth/100))^5)
+
+max_rent_share <- input$cost_burden
+
+minimum_income <- (predicted_rent*12)/(max_rent_share/100)
+
+future_rent_table <- tribble(
+  ~Variable, ~Value,
+  "2022 Effective Rent per Sq Ft", paste0("$",prettyNum(round(effective_rent_psf, digits = 2),big.mark=",")),
+  "2022 Average Unit Size", paste0(as.character(prettyNum(round(average_unit_size),big.mark = ","))),
+  "2022 YTD 5-Year Average Annual Rent Growth", paste0(round(average_annual_rent_growth*100, digits = 2),"%"),
+  "Selected Rent Growth", paste0(round(predicted_rent_growth, digits = 2),"%"),
+  "2026 Predicted Rent", paste0(as.character(prettyNum(round(predicted_rent), big.mark = ","))),
+  "Max rent as share of income", paste0(round(input$cost_burden),"%"),
+  "Minimum Income to Afford",paste0("$",prettyNum(round(minimum_income),big.mark = ","))
+)
+  
+reactable(future_rent_table,
+          columns = list(
+            Value = colDef(align = "right")
+          ))
+
+})
+
+renderReactable({
+  
+  predicted_rent_growth <- input$selected_rent_growth
+
+predicted_rent <- effective_rent_psf*average_unit_size*((1+(predicted_rent_growth/100))^5)
+
+max_rent_share <- input$cost_burden
+
+minimum_income <- (predicted_rent*12)/(max_rent_share/100)
+  
+  income_can_afford %>%
+  mutate(`Percent can afford` = case_when(
+  range_high < minimum_income ~ 0,
+  range_low < minimum_income & range_high > minimum_income ~ 1-((minimum_income-range_low)/range),
+  range_low > minimum_income & range_high > minimum_income ~ 1
+)) %>%
+  select(`Income Bracket`,Renters,`Percent can afford`) %>%
+  mutate(`Future renters that can afford market rate` = `Renters`*`Percent can afford`) %>%
+  mutate(Renters = prettyNum(Renters, big.mark = ",")) %>%
+  mutate(`Percent can afford` = scales::label_percent()(`Percent can afford`)) %>%
+  mutate(`Future renters that can afford market rate` = round(`Future renters that can afford market rate`)) %>%
+
+  reactable(columns = list(
+    `Income Bracket` = colDef(footer = "Total"),
+    Renters = colDef(align = "right"),
+    `Percent can afford` = colDef(align = "right"),
+    `Future renters that can afford market rate` = colDef(align = "right",
+                                                          footer = function(values) sprintf("%.0f", sum(values)),
+                                                          format = colFormat(separators = TRUE, digits = 0))
+  ),
+  wrap = FALSE,
+  bordered = TRUE)
+
+  
+})
+```
+
+### Current Unmet Demand
+
+```{r current unmet demand}
+
+total_units <- costar_ab_trend %>% filter(ab_props_period == "2022 YTD") %>% pull(ab_props_inventory_units)
+vacant_units <- costar_ab_trend %>% filter(ab_props_period == "2022 YTD") %>% pull(ab_props_vacancy_units) 
+vacancy_rate <- costar_ab_trend %>% filter(ab_props_period == "2022 YTD") %>% mutate(ab_props_vacancy_percent = as.double(str_remove(ab_props_vacancy_percent,"%"))/100) %>% pull(ab_props_vacancy_percent)
+base_line_vacancy <- .07
+unmet_demand <- as.double(round((as.double(total_units)*.07)-as.double(vacant_units)))
+
+
+unmet_demand_tbl <- tribble(
+  ~Variable, ~Value,
+  "Total Units", paste0(prettyNum(round(total_units), big.mark = ",")),
+  "Vacant Units", paste0(prettyNum(round(vacant_units), big.mark = ",")),
+  "Vacancy Rate", paste0(vacancy_rate*100,"%"),
+  "Stabilized Vacancy", paste0(base_line_vacancy*100,"%"),
+  "Current Unmet Demand", paste0(prettyNum(round(unmet_demand), big.mark = ","))
+)
+
+
+unmet_demand_tbl %>% reactable(
+  columns = list(
+    Value = colDef(align = "right")
+  )
+)
+
+
+
+
+```
+
+### Homeownership
